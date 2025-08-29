@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Light Up My Life</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: #0b1320; /* dark background */
+      font-family: 'Cursive', sans-serif;
+      color: white;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 400;
+      font-family: 'Brush Script MT', cursive;
+      color: #ddd;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      padding: 15px 40px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background: linear-gradient(45deg, #ff0080, #7928ca);
+      box-shadow: 0 0 20px rgba(255, 0, 128, 0.6),
+                  0 0 40px rgba(121, 40, 202, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255, 0, 128, 0.8),
+                  0 0 60px rgba(121, 40, 202, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <h1>Light Up My Life</h1>
+  <button class="btn" onclick="location.href='letter.html'">Turn the Lights On ✨</button>
+</body>
+</html>

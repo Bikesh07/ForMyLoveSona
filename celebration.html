@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Celebration</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: rgb(236, 164, 176);
+      overflow: hidden;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff0080, #7928ca, #ff8c00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cake {
+      position: relative;
+      width: 150px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .cakeText {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.2em;
+      font-weight: bold;
+      color: rgb(126, 121, 121);
+      pointer-events: none; /* text won't block clicking */
+    }
+
+    .layer {
+      height: 40px;
+      border-radius: 10px;
+      margin: 5px auto;
+    }
+
+    .layer1 {
+      width: 150px;
+      background: #700327;
+    }
+    .layer2 {
+      width: 120px;
+      background: #8a153c;
+    }
+    .layer3 {
+      width: 90px;
+      background: #f870a0;
+    }
+
+    .candle {
+      width: 10px;
+      height: 25px;
+      background: rgb(235, 205, 39);
+      margin: auto;
+      border-radius: 3px;
+      position: relative;
+      top: -10px;
+    }
+
+    .flame {
+      width: 15px;
+      height: 15px;
+      background: orange;
+      border-radius: 50%;
+      position: absolute;
+      top: -18px;
+      left: -2px;
+      animation: flicker 0.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { transform: scale(1); opacity: 1; }
+      to { transform: scale(1.2); opacity: 0.7; }
+    }
+
+    /* Flying items */
+    .item {
+      position: absolute;
+      bottom: 0;
+      font-size: 2em;
+      opacity: 0.9;
+      animation: fly 5s linear forwards;
+    }
+
+    @keyframes fly {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+
+    /* Continue button */
+    #continueBtn {
+      display: none;
+      margin-top: 40px;
+      padding: 15px 40px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(45deg, red, pink);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #continueBtn:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <h1>Let's Celebrate! 🎂</h1>
+
+  <div class="cake" id="cake">
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
+    <div class="layer layer3"></div>
+    <div class="layer layer2"></div>
+    <div class="layer layer1"></div>
+    <div class="cakeText" id="cakeText">Click Here</div>
+  </div>
+
+  <button id="continueBtn" onclick="location.href='light.html'">Continue</button>
+
+  <script>
+    const cake = document.getElementById("cake");
+    const body = document.body;
+    const continueBtn = document.getElementById("continueBtn");
+    const cakeText = document.getElementById("cakeText");
+    let celebration = false;
+
+    cake.addEventListener("click", () => {
+      if (!celebration) {
+        body.style.background = "white";
+        cakeText.style.display = "none"; // hide "Click Here" text
+        startCelebration();
+        continueBtn.style.display = "block"; // show button
+        celebration = true;
+      }
+    });
+
+    function startCelebration() {
+      setInterval(() => {
+        createItem("❤️");
+        createItem("🎈");
+      }, 500);
+    }
+
+    function createItem(symbol) {
+      const item = document.createElement("div");
+      item.classList.add("item");
+      item.textContent = symbol;
+      item.style.left = Math.random() * window.innerWidth + "px";
+      item.style.animationDuration = (3 + Math.random() * 2) + "s";
+      document.body.appendChild(item);
+
+      setTimeout(() => {
+        item.remove();
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
